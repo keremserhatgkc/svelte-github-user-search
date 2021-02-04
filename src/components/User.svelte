@@ -1,6 +1,7 @@
 <script>
   export let username;
   export let avatar;
+  export let link;
 </script>
 
 <img src={avatar} alt={`${username}'s avatar`} />

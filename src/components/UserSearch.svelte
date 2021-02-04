@@ -1,6 +1,4 @@
 <script>
-  import User from "./User.svelte";
-
   let user;
   let query = "";
   const handleSubmit = () => {
@@ -14,16 +12,25 @@
 
 <div class="user-search">
   <form on:submit|preventDefault={handleSubmit}>
-    <input type="text" bind:value={query} />
+    <input
+      placeholder="Search a github user..."
+      type="text"
+      bind:value={query}
+    />
     <button>Search</button>
   </form>
 </div>
 
 {#if user}
-  <div class="result">
-    <User username={user.login} avatar={user.avatar_url} />
+  <div class="userCard">
+    <img src={user.avatar_url} alt="John" style="width:100%" />
+    <h1>{user.login}</h1>
+    <a href={user.html_url}><i class="fa fa-github" />Github Page</a>
   </div>
-{/if}
+{/if}<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+/>
 
 <style>
   .user-search {
@@ -32,14 +39,19 @@
     border-radius: 10px;
     margin-bottom: 40px;
   }
-  .result {
-    padding: 10px;
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    width: 50px;
-    width: auto;
+  .userCard {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    max-width: 300px;
+    margin: auto;
+    text-align: center;
     margin-bottom: 20px;
-    align-items: center;
+  }
+  .userCard:hover {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+  }
+  a {
+    text-decoration: none;
+    font-size: 22px;
+    color: black;
   }
 </style>
